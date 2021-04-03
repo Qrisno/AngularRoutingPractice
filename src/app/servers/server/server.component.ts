@@ -21,9 +21,8 @@ export class ServerComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const id = +this.activatedRoute.snapshot.params["id"];
     this.server = this.serversService.getServer(id);
-    this.subscription = this.activatedRoute.params.subscribe((params) => {
-      this.server = this.serversService.getServer(+params["id"]);
-      console.log(this.server);
+    this.subscription = this.activatedRoute.data.subscribe((params) => {
+      this.server = params["server"];
     });
   }
   onEdit() {
